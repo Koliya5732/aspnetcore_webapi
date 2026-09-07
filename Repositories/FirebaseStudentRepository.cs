@@ -1,0 +1,3 @@
+﻿using AspNetCore.WebAPI.Models;
+using Firebase.Database;
+namespace AspNetCore.WebAPI.Repositories; public class FirebaseStudentRepository { private readonly FirebaseClient _firebaseClient; public FirebaseStudentRepository(string firebaseUrl) { _firebaseClient = new FirebaseClient(firebaseUrl); } public async Task<List<Student>> GetStudentsAsync() { var students = await _firebaseClient.Child("students").OnceSingleAsync<List<Student>>(); return students ?? new List<Student>(); } }
